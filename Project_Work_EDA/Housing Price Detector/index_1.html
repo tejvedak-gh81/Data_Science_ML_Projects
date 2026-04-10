@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ames Housing Price Prediction</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        h2 { text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h2>Ames Housing Price Prediction</h2>
+
+    <form action="/predict" method="POST">
+        <div class="form-group">
+            <label for="Year_Built">Year Built:</label>
+            <input type="number" id="Year_Built" name="Year_Built" placeholder="e.g. 2005" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Year_Remod_Add">Year Remodeled:</label>
+            <input type="number" id="Year_Remod_Add" name="Year_Remod_Add" placeholder="e.g. 2006" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Total_Bsmt_SF">Total Basement SF:</label>
+            <input type="number" id="Total_Bsmt_SF" name="Total_Bsmt_SF" placeholder="e.g. 1000" required>
+        </div>
+
+        <div class="form-group">
+            <label for="First_Flr_SF">1st Floor SF:</label>
+            <input type="number" id="First_Flr_SF" name="First_Flr_SF" placeholder="e.g. 1200" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Gr_Liv_Area">Above Grade Living Area SF:</label>
+            <input type="number" id="Gr_Liv_Area" name="Gr_Liv_Area" placeholder="e.g. 1500" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Garage_Area">Garage Area SF:</label>
+            <input type="number" id="Garage_Area" name="Garage_Area" placeholder="e.g. 500" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Overall_Qual">Overall Quality (1-10):</label>
+            <input type="number" id="Overall_Qual" name="Overall_Qual" min="1" max="10" placeholder="10 = Excellent" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Garage_Cars">Garage Car Capacity:</label>
+            <input type="number" id="Garage_Cars" name="Garage_Cars" placeholder="e.g. 2" required>
+        </div>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+
+(% if prediction is not none %)
+	<h2>The predicted house price is: $(( "{:,.2f}".format(prediction))) </h2>
+(% endif %)
+</body>
+</html>
